@@ -1,0 +1,27 @@
+#Given the 3D coordinates of each star in our galaxy in the format (x,y,z), and the coordinates of a specific star (let's say Sun) in the same format, find the star that is the nearest to the Sun in the galaxy. 
+#Test Case: 
+ 
+#Galaxy: {A:{10, 10, 10}, B:{12, 12, 10}, C:{13, 10, 12}, D:{20, 10, 15} ....} 
+#Sun: {11, 12, 10} 
+#Output: B 
+
+def find_nearest_star(galaxy, sun_coordinates):
+    nearest_star = None
+    min_distance = float('inf')
+
+    for star, coordinates in galaxy.items():
+        distance = math.sqrt((coordinates[0] - sun_coordinates[0]) ** 2 +
+                             (coordinates[1] - sun_coordinates[1]) ** 2 +
+                             (coordinates[2] - sun_coordinates[2]) ** 2)
+        if distance < min_distance:
+            min_distance = distance
+            nearest_star = star
+
+    return nearest_star
+
+# Test case
+galaxy = {'A': [10, 10, 10], 'B': [12, 12, 10], 'C': [13, 10, 12], 'D': [20, 10, 15]}
+sun_coordinates = [11, 12, 10]
+
+result = find_nearest_star(galaxy, sun_coordinates)
+print(result)
